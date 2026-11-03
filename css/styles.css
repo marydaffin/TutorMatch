@@ -1,0 +1,154 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+}
+
+/* Navigation */
+.navbar {
+    background-color: #183153;
+    color: white;
+    padding: 20px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+/* Welcome section */
+.hero {
+    text-align: center;
+    background-color: #e4efff;
+    padding: 80px 20px;
+}
+
+.hero h1 {
+    font-size: 38px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.btn {
+    display: inline-block;
+    background-color: #2563eb;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.btn:hover {
+    background-color: #1745aa;
+}
+
+/* Search section */
+.search-section {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.search-section h2 {
+    margin-bottom: 20px;
+}
+
+.search-section input {
+    padding: 12px;
+    width: 280px;
+    max-width: 70%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.search-section button {
+    padding: 12px 20px;
+    border: none;
+    background-color: #2563eb;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Tutor cards */
+.tutor-section {
+    padding: 40px 8%;
+}
+
+.tutor-section h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.tutor-container {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit, minmax(250px, 1fr)
+    );
+    gap: 20px;
+}
+
+.tutor-card {
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tutor-card h3 {
+    color: #183153;
+    margin-bottom: 15px;
+}
+
+.tutor-card p {
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    background-color: #183153;
+    color: white;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+@media (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .hero h1 {
+        font-size: 28px;
+    }
+}
