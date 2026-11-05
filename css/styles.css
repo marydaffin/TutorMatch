@@ -152,3 +152,144 @@ footer {
         font-size: 28px;
     }
 }
+
+
+/* Registration and Tutor Setup */
+
+.register-container {
+    width: 100%;
+    max-width: 460px;
+    box-sizing: border-box;
+    margin: 60px auto;
+    padding: 35px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.register-container h1 {
+    color: #1b3557;
+    font-size: 30px;
+    margin-bottom: 12px;
+}
+
+.register-container p {
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.register-container form {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.register-container label {
+    font-weight: bold;
+    color: #333;
+    margin-top: 16px;
+    margin-bottom: 7px;
+}
+
+.register-container input,
+.register-container select,
+.register-container textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: white;
+    color: #333;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+}
+
+.register-container textarea {
+    resize: vertical;
+    line-height: 1.5;
+}
+
+.register-container input:focus,
+.register-container select:focus,
+.register-container textarea:focus {
+    outline: none;
+    border-color: #2563eb;
+}
+
+.register-container button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 25px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.register-container button:hover {
+    background: #1d4ed8;
+}
+
+.register-container .login-link {
+    margin-top: 22px;
+    margin-bottom: 0;
+}
+
+.register-container a {
+    color: #2563eb;
+    text-decoration: none;
+}
+
+.register-container a:hover {
+    text-decoration: underline;
+}
+
+.register-container .error {
+    color: #b91c1c;
+    background: #fee2e2;
+    padding: 12px;
+    border-radius: 5px;
+}
+
+.register-container .success {
+    color: #166534;
+    background: #dcfce7;
+    padding: 12px;
+    border-radius: 5px;
+}
+
+/* Tutor Profile Setup */
+
+.tutor-setup-container {
+    max-width: 540px;
+}
+
+.tutor-setup-container .step-label {
+    display: inline-block;
+    background: #e3edff;
+    color: #2563eb;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 18px;
+}
+
+.tutor-setup-container .account-type {
+    background: #f1f5f9;
+    padding: 12px;
+    border-radius: 5px;
+    color: #1b3557;
+}
+
+@media (max-width: 600px) {
+    .register-container {
+        max-width: calc(100% - 30px);
+        margin: 30px auto;
+        padding: 22px;
+    }
+}
