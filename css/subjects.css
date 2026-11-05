@@ -1,0 +1,241 @@
+
+/* ==============================
+   TutorMatch Subject Features
+   ============================== */
+
+/* Tutor Setup Page */
+
+.tutor-setup-container {
+    max-width: 540px;
+}
+
+.tutor-setup-container .subject-field {
+    margin-top: 20px;
+}
+
+.tutor-setup-container .subject-heading {
+    display: block;
+    text-align: left;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.tutor-setup-container .subject-help {
+    color: #64748b;
+    font-size: 14px;
+    text-align: left;
+    margin: 0 0 12px;
+}
+
+.tutor-setup-container .subjects-container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.tutor-setup-container .subject-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    margin: 0;
+    border: 1px solid #dbe3ef;
+    border-radius: 7px;
+    background-color: #f8fafc;
+    cursor: pointer;
+    font-weight: normal;
+    text-align: left;
+}
+
+.tutor-setup-container .subject-option:hover {
+    background-color: #eff6ff;
+    border-color: #93c5fd;
+}
+
+.tutor-setup-container .subject-option input {
+    width: 17px;
+    height: 17px;
+    margin: 0;
+    padding: 0;
+    flex-shrink: 0;
+    accent-color: #2563eb;
+}
+
+.tutor-setup-container .subject-option span {
+    color: #1b3557;
+    font-size: 14px;
+    overflow-wrap: anywhere;
+}
+
+.tutor-setup-container .empty-subjects {
+    grid-column: 1 / -1;
+    color: #64748b;
+    padding: 15px;
+}
+
+.tutor-setup-container button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Homepage Search */
+
+.search-section {
+    text-align: center;
+}
+
+.search-section .search-form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.search-section .search-form input {
+    width: 300px;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+.search-section .search-form .subject-filter {
+    min-width: 190px;
+    max-width: 100%;
+    padding: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    color: #333;
+    font-size: 15px;
+}
+
+.search-section .search-form input:focus,
+.search-section .search-form .subject-filter:focus {
+    outline: none;
+    border-color: #2563eb;
+}
+
+.search-section .search-form button {
+    width: auto;
+    margin: 0;
+    padding: 14px 24px;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.search-section .search-form button:hover {
+    background-color: #1d4ed8;
+}
+
+.search-section .clear-search {
+    color: #2563eb;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.search-section .clear-search:hover {
+    text-decoration: underline;
+}
+
+/* Tutor Cards */
+
+.tutors-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 35px 25px;
+}
+
+.tutors-section h2 {
+    text-align: center;
+    color: #1b3557;
+    margin-bottom: 30px;
+}
+
+.tutors-section .tutor-grid {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(260px, 1fr)
+    );
+    gap: 25px;
+}
+
+.tutors-section .tutor-card {
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.tutors-section .tutor-card h3 {
+    color: #1b3557;
+    margin-bottom: 15px;
+    font-size: 22px;
+}
+
+.tutors-section .tutor-card p {
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+.tutors-section .tutor-bio {
+    color: #555;
+    overflow-wrap: anywhere;
+}
+
+.tutors-section .view-profile-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 11px 18px;
+    background-color: #2563eb;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.tutors-section .view-profile-btn:hover {
+    background-color: #1d4ed8;
+}
+
+.tutors-section .no-tutors {
+    text-align: center;
+    color: #555;
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+    .tutor-setup-container .subjects-container {
+        grid-template-columns: 1fr;
+    }
+
+    .search-section .search-form {
+        flex-direction: column;
+        padding: 0 15px;
+    }
+
+    .search-section .search-form input,
+    .search-section .search-form .subject-filter {
+        width: 100%;
+    }
+
+    .search-section .search-form button {
+        width: 100%;
+    }
+
+    .tutors-section {
+        padding: 25px 15px;
+    }
+}
