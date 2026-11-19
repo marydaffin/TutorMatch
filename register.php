@@ -3,7 +3,6 @@
 session_start();
 require_once 'db.php';
 
-// Use the existing PDO connection from db.php
 $db = $conn ?? $pdo ?? null;
 
 if (!$db instanceof PDO) {
@@ -11,6 +10,11 @@ if (!$db instanceof PDO) {
 }
 
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+if (isset($_SESSION['user_id'])) {
+    header("Location: dashboard.php");
+    exit;
+}
 
 function e($value) {
     return htmlspecialchars((string)$value, ENT_QUOTES, 'UTF-8');
@@ -38,10 +42,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'] ?? '';
     $confirm_password = $_POST['confirm_password'] ?? '';
     $role = $_POST['role'] ?? '';
+
     $token = $_POST['csrf_token'] ?? '';
 
     if (!hash_equals($_SESSION['registration_csrf'], $token)) {
-        $error = "Invalid form submission. Refresh the page.";
+        $error = "Invalid form submission.";
     }
     elseif (
         $first_name === '' ||
@@ -57,8 +62,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             strlen($last_name) > 50) {
         $error = "Names cannot exceed 50 characters.";
     }
-    elseif (strlen($email) > 100 ||
-            !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    elseif (
+        strlen($email) > 100 ||
+        !filter_var($email, FILTER_VALIDATE_EMAIL)
+    ) {
         $error = "Please enter a valid email address.";
     }
     elseif (strlen($password) < 8) {
@@ -71,20 +78,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = "Please select a valid account type.";
     }
     else {
-
         try {
-            // Check whether email already exists
             $check = $db->prepare(
                 "SELECT user_id FROM users WHERE email = ? LIMIT 1"
             );
+
             $check->execute([$email]);
 
             if ($check->fetch()) {
                 $error = "An account with this email already exists.";
             }
             else {
-
-                // Hash password before storing it
                 $password_hash = password_hash(
                     $password,
                     PASSWORD_DEFAULT
@@ -92,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 if ($role === 'Student') {
 
-                    // Student accounts only need the users table
+                    // Student registration
                     $stmt = $db->prepare(
                         "INSERT INTO users
                         (first_name, last_name, email, password_hash, role)
@@ -114,9 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 } else {
 
-                    // Tutor or Both:
-                    // Temporarily hold information in the session
-                    // until the additional profile is completed.
+                    // Tutor/Both: collect additional information first
                     $_SESSION['pending_registration'] = [
                         'first_name' => $first_name,
                         'last_name' => $last_name,
@@ -145,25 +147,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
-
-    <title>Register - TutorMatch</title>
-
-    <link rel="stylesheet" href="css/styles.css?v=3">
+    <title>Sign Up - TutorMatch</title>
+    <link rel="stylesheet" href="css/styles.css?v=5">
 </head>
 <body>
 
-<header class="navbar">
-    <div class="nav-container">
-        <h2>TutorMatch</h2>
-
-        <nav>
-            <a href="index.php">Home</a>
-            <a href="tutors.php">Find Tutors</a>
-            <a href="login.php">Login</a>
-            <a href="register.php">Sign Up</a>
-        </nav>
-    </div>
-</header>
+<?php require_once __DIR__ . '/includes/navbar.php'; ?>
 
 <main class="register-container">
 
@@ -176,15 +165,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <?php if ($success): ?>
         <p class="success"><?= e($success) ?></p>
-        <p>
-            <a href="login.php">Go to Login</a>
-        </p>
+        <p><a href="login.php">Go to Login</a></p>
     <?php endif; ?>
 
     <form action="register.php" method="POST">
 
-        <input type="hidden" name="csrf_token"
-               value="<?= e($_SESSION['registration_csrf']) ?>">
+        <input
+            type="hidden"
+            name="csrf_token"
+            value="<?= e($_SESSION['registration_csrf']) ?>"
+        >
 
         <label for="first_name">First Name</label>
         <input
@@ -260,6 +250,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </select>
 
         <button type="submit">Continue</button>
+
     </form>
 
     <p class="login-link">
